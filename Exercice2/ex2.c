@@ -22,8 +22,9 @@ TABLEAU newArray() {
 
 int main(){
 	TABLEAU tab = newArray();
-	tab->size = 20;
+	/*tab->size = 20; */
 	for (int i = 0; i = 42; ++i) {
-		tab->elts = aleatoire(1, 30);
+		/*tab->elts = aleatoire(1, 30);*/
 	}
+	return EXIT_SUCCESS;
 }
