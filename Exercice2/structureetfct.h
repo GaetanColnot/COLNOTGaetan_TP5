@@ -2,28 +2,28 @@
 #include <stdlib.h>
 
 typedef struct Tableau {
-	int* elt; // le tableau d’entiers
-	int size; // la taille de ce tableau d’entiers
-	int eltsCount; // le nombre d’éléments dans le tableau
+	int* elt; // le tableau dâ€™entiers
+	int size; // la taille de ce tableau dâ€™entiers
+	int eltsCount; // le nombre dâ€™Ã©lÃ©ments dans le tableau
 } TABLEAU;
 
 int incrementArraySize(TABLEAU* tab, int incrementValue) {
 	int* tmp = tab->elt;
 	int taille;
 	taille = tab->size + incrementValue; //augmentation de la taille
-	tab->elt = (int*)realloc((tab->elt), taille * sizeof(int)); // reallocation de l'élément
+	tab->elt = (int*)realloc((tab->elt), taille * sizeof(int)); // reallocation de l'Ã©lÃ©ment
 	if (tab->elt == NULL) { return -1; } // test si erreur
 	return taille;
 }
 
 int setElement(TABLEAU* tab, int pos, int element) {
-	if ((pos < 0) || (tab == NULL)) { // test pour savoir si la valeur entrée n'entrenera pas une erreur et si tab différent de NULL
+	if ((pos < 0) || (tab == NULL)) { // test pour savoir si la valeur entrÃ©e n'entrainera pas une erreur et si tab diffÃ©rent de NULL
 		return 0;
 	}
 	else {
-		if (pos > tab->size) { // on règle le problème d'agrandissement en premier lieu
+		if (pos > tab->size) { // on rÃ¨gle le problÃ¨me d'agrandissement en premier lieu
 			if (incrementArraySize(tab, pos - tab->size) == NULL) {return 0; }
-			else { //puis on incrément à la position voulue en prenant chaque donnée de la structure TABLEAU 
+			else { //puis on incrÃ©ment Ã  la position voulue en prenant chaque donnÃ©e de la structure TABLEAU 
 				incrementArraySize(tab, pos - tab->size);
 				for (int i = tab->size; i = pos; ++i) {
 					*(tab->elt + i) = 0;
@@ -43,12 +43,12 @@ int displayElements(TABLEAU* tab, int startPos, int endPos) {
 	}
 	if (startPos >= endPos) {
 		for (int i = endPos; i = startPos; ++i) {
-			printf("Elt n° %d vaut %d \n", i, *(tab->elt + i)); //affichage de l'element est de sa valeur 
+			printf("Elt nÂ° %d vaut %d \n", i, *(tab->elt + i)); //affichage de l'element est de sa valeur 
 		}
 	}
 	if (startPos <= endPos) {
 		for(int i=startPos; i=endPos; ++i){
-			printf("Elt n° %d vaut %d \n", i, *(tab->elt + i)); //affichage de l'element est de sa valeur 
+			printf("Elt nÂ° %d vaut %d \n", i, *(tab->elt + i)); //affichage de l'element est de sa valeur 
 		}
 	}
 	return 0;
