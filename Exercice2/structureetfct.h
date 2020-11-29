@@ -22,7 +22,7 @@ int setElement(TABLEAU* tab, int pos, int element) {
 	}
 	else {
 		if (pos > tab->size) { // on règle le problème d'agrandissement en premier lieu
-			if (incrementArraySize(tab, pos - tab->size) == NULL) {return 0; }
+			if (incrementArraySize(tab, pos - tab->size) == 0) {return 0; }
 			else { //puis on incrément à la position voulue en prenant chaque donnée de la structure TABLEAU 
 				incrementArraySize(tab, pos - tab->size);
 				for (int i = tab->size; i = pos; ++i) {
@@ -31,10 +31,10 @@ int setElement(TABLEAU* tab, int pos, int element) {
 				*(tab->elt + pos) = element;
 				tab->size= incrementArraySize(tab, pos - tab->size);
 				tab->eltsCount = tab->eltsCount + 1;
-				return pos;
 			}
 		}
 	}
+	return pos;
 }
 
 int displayElements(TABLEAU* tab, int startPos, int endPos) {
@@ -55,17 +55,28 @@ int displayElements(TABLEAU* tab, int startPos, int endPos) {
 }
 
 int deleteElements(TABLEAU* tab, int startPos, int endPos) {
-	if ((tab == NULL) || (startPos < 0) || (endPos < 0)) {
+	if ((tab == NULL) || (startPos < 0) || (endPos < 0)) { //on ne peut supprimer des éléments qui n'existent pas
 		return -1;
 	}
+	//on va à reculons dans les deux cas :
 	if (startPos >= endPos) {
 		int tmp = startPos;
 		startPos = endPos;
-		endPos = tmp; //incrementAraySize(TABLEAU * tab , int -incrementValue)??
-
+		endPos = tmp;
+		for (int i = 1; i = (startPos - endPos); ++i) { 
+			*(tab->elt + endPos + i - 1) = *(tab->elt + startPos + i);
+		}
+		int nouvelletaille = tab->size - (startPos - endPos);
+		tab->elt = (int*)realloc((tab->elt), nouvelletaille * sizeof(int)); //réallocation de la mémoire
+		return nouvelletaille;
 	}
 	else {
-		//incrementAraySize(TABLEAU * tab , int -incrementValue)??
+		for (int i = 1; i = (endPos - startPos); ++i) { 
+			*(tab->elt + startPos + i - 1) = *(tab->elt + endPos + i); 
+		}
+		int nouvelletaille = tab->size - (endPos - startPos);
+		tab->elt = (int*)realloc((tab->elt), nouvelletaille * sizeof(int)); //réallocation de la mémoire
+		return nouvelletaille;
 	}
 }
 

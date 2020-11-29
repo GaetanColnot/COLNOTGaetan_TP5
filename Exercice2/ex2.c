@@ -1,30 +1,28 @@
 #define TAILLEINITIALE 100
 #include "structureetfct.h"
 
-TABLEAU tableau(int* p, int size, int eltsCount)
-{
-	return;
-}
 
 TABLEAU newArray() {
-	void* p;
-	int size = sizeof(TABLEAU);
-	if (!(p = malloc(size)) && size) { // on vérifie si l'allocation est possible
-		return tableau(NULL, TAILLEINITIALE, 0);
+	TABLEAU* tab;
+	tab = malloc(sizeof(TABLEAU));
+	if (tab== NULL) { // on vérifie si l'allocation est possible
+		(tab->elt) = malloc(TAILLEINITIALE * sizeof(int));
+		tab->size = TAILLEINITIALE;
+		tab->eltsCount = 0;
 	}
-	else {
-		TABLEAU tab = { malloc(TAILLEINITIALE * sizeof(int)), TAILLEINITIALE, 0 }; //on alloue la place
-		return tab;
-	}
-
+	return *tab; //on retourne le tableau
 }
 
 
 int main(){
-	TABLEAU tab = newArray();
-	/*tab->size = 20; */
+	TABLEAU tab1 = newArray();
+	tab1.size = 20; 
 	for (int i = 0; i = 42; ++i) {
-		/*tab->elts = aleatoire(1, 30);*/
+		*tab1.elt = aleatoire(1, 30); //problème de pointeur "Exception levée : violation d'accès en écriture."
 	}
+	/*setElement(*tab1, 13, 42);
+	displayElements(*tab1, 1, 20);
+	deleteElements(*tab1, 12, 14);
+	displayElements(*tab1, 1, 20);*/
 	return EXIT_SUCCESS;
 }
