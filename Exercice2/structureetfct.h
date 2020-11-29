@@ -81,6 +81,6 @@ int deleteElements(TABLEAU* tab, int startPos, int endPos) {
 }
 
 int aleatoire(int min, int max) {
-	int number = (int)((double)rand() / (RAND_MAX + 1) * (max - min)) + min;
+	int number = (int)(((double)rand() / (RAND_MAX + 1) * (max - min)) + min);
 	return (number);
 }

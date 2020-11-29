@@ -18,7 +18,7 @@ int main(){
 	TABLEAU tab1 = newArray();
 	tab1.size = 20; 
 	for (int i = 0; i = 42; ++i) {
-		*tab1.elt = aleatoire(1, 30); //problème de pointeur "Exception levée : violation d'accès en écriture."
+		*tab1.elt = (int*)(aleatoire(1, 30)); //problème de pointeur "Exception levée : violation d'accès en écriture."
 	}
 	/*setElement(*tab1, 13, 42);
 	displayElements(*tab1, 1, 20);
